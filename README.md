@@ -1,38 +1,39 @@
 # DeltaGuard AI
 
-**Bangladesh Climate Risk Intelligence Platform** — প্রথম ধাপে flood risk assessment।
+**Bangladesh Climate Risk Intelligence Platform** — starting with historical flood risk assessment.
 
-> ⚠️ **Disclaimer:** এই প্ল্যাটফর্ম ঐতিহাসিক ঝুঁকি বিশ্লেষণ করে। এটি real-time forecast বা official disaster warning নয়।
+> ⚠️ **Disclaimer:** This platform provides historical risk analysis. It is **not** a real-time forecast and **not** an official disaster warning.
 
 ## Status
 
-| Phase | বিষয় | অবস্থা |
+| Phase | Topic | Status |
 |---|---|---|
-| 0 | Scaffold, architecture, checklist | ✅ সম্পন্ন |
+| 0 | Scaffold, architecture, checklist | ✅ Done |
 | 1 | Research, datasets, pilot area | ⏳ |
-| 2 | Data Science (EDA, features, labels) | ⏳ |
-| 3 | Machine Learning | ⏳ |
+| 2 | Data science (EDA, features, labels) | ⏳ |
+| 3 | Machine learning | ⏳ |
 | 4 | Geospatial backend (PostGIS) | ⏳ |
 | 5 | Frontend dashboard | ⏳ |
 | 6 | QA | ⏳ |
 | 7 | Deployment | ⏳ |
 
-বিস্তারিত: [`docs/development_checklist.md`](docs/development_checklist.md)
+Details: [`docs/development_checklist.md`](docs/development_checklist.md)
 
-## মূল নীতি
-- বাস্তব ডেটা ছাড়া কিছু বানানো হয় না; synthetic flood label নয়।
-- Evaluation ছাড়া accuracy claim নয়।
-- Spatial + temporal validation।
-- Credential শুধু `.env`-এ।
+## Principles
+- No fabricated data: only real data is used, and no synthetic flood labels.
+- No accuracy claims without evaluation.
+- Spatial and temporal validation.
+- Credentials live only in `.env`.
 
 ## Quick start (backend)
 
 ```bash
-python -m venv .venv && source .venv/bin/activate
+python -m venv .venv
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
 pip install -r backend/requirements-dev.txt
-cp .env.example .env
+cp .env.example .env             # Windows: copy .env.example .env
 uvicorn backend.app.main:app --reload
-# http://localhost:8000/docs
+# API docs: http://localhost:8000/docs
 python -m pytest
 ```
 
@@ -45,4 +46,5 @@ Docker: `docker compose up --build`
 - [Suggested additions](docs/suggested_additions.md)
 
 ## License
-TBD (Phase 7-এ ঠিক হবে; dataset license আলাদা, `docs/data_sources.md` দেখুন)।
+The source code is released under the [MIT License](LICENSE).
+Datasets used by this project have their own licenses; see [`docs/data_sources.md`](docs/data_sources.md).
