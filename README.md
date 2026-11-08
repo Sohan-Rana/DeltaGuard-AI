@@ -8,7 +8,7 @@
 
 | Phase | বিষয় | অবস্থা |
 |---|---|---|
-| 0 | Scaffold, architecture, checklist | ✅ চলমান/সম্পন্ন |
+| 0 | Scaffold, architecture, checklist | ✅ সম্পন্ন |
 | 1 | Research, datasets, pilot area | ⏳ |
 | 2 | Data Science (EDA, features, labels) | ⏳ |
 | 3 | Machine Learning | ⏳ |
@@ -29,11 +29,11 @@
 
 ```bash
 python -m venv .venv && source .venv/bin/activate
-pip install -r backend/requirements.txt
+pip install -r backend/requirements-dev.txt
 cp .env.example .env
 uvicorn backend.app.main:app --reload
 # http://localhost:8000/docs
-pytest backend/tests
+python -m pytest
 ```
 
 Docker: `docker compose up --build`
