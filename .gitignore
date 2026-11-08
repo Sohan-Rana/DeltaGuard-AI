@@ -11,14 +11,14 @@ venv/
 node_modules/
 frontend/dist/
 
-# Secrets (কখনো commit করবেন না)
+# Secrets (never commit these)
 .env
 *.pem
 *.json.key
 service-account*.json
 earthengine-credentials*
 
-# Data (বড় ফাইল git-এ রাখা হয় না; metadata রাখা হয়)
+# Data (large files are not kept in git; metadata is)
 data/raw/*
 data/processed/*
 data/external/*
@@ -26,7 +26,7 @@ data/external/*
 !data/**/README.md
 !data/**/*.metadata.json
 
-# Model artifacts (বড় হলে DVC / Releases ব্যবহার করুন)
+# Model artifacts (use DVC / Releases if large)
 models/*.pkl
 models/*.joblib
 models/*.ubj

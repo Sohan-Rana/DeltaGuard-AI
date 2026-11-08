@@ -1,6 +1,6 @@
 # DeltaGuard AI — System Architecture (Phase 0 draft)
 
-> স্ট্যাটাস: প্রস্তাবিত design। Phase 1-এ pilot geography ঠিক হলে চূড়ান্ত হবে।
+> Status: proposed design. To be finalized once the pilot geography is chosen in Phase 1.
 
 ## 1. High-level flow
 
@@ -11,7 +11,7 @@
  scripts/ + ml/preprocessing   ← ingestion + validation + cleaning
         │
         ▼
- data/raw → data/processed (+ metadata JSON প্রতিটি dataset-এর জন্য)
+ data/raw → data/processed (+ a metadata JSON for every dataset)
         │
         ▼
  ml/training → ml/evaluation → models/ (versioned artifacts)
@@ -28,18 +28,18 @@
 
 ## 2. Core design decisions
 
-| বিষয় | সিদ্ধান্ত | কারণ |
+| Topic | Decision | Reason |
 |---|---|---|
-| Spatial unit | Grid cell (যেমন ~1 km) + admin boundary (district/upazila) mapping | Rainfall/elevation raster-based; admin level শুধু summary-র জন্য |
-| Pilot area | প্রথমে ১-২ অঞ্চল (Phase 1-এ নির্ধারণ, যেমন Sylhet/Sunamganj haor, বা Brahmaputra-Jamuna floodplain) | সব দেশ একসাথে করলে label ও compute ভারী হবে |
-| Label source | Sentinel-1 / JRC / historical flood extent থেকে observed flood mask | Synthetic label নিষিদ্ধ (critical rule) |
-| Validation | Spatial block CV + temporal split (পুরনো বছরে train, নতুন বছরে test) | Spatial autocorrelation leakage ঠেকাতে |
-| Models | Logistic Regression → Random Forest → XGBoost, আগে baseline | Justified complexity |
+| Spatial unit | Grid cell (e.g. ~1 km) + admin boundary (district/upazila) mapping | Rainfall/elevation data are raster-based; admin level is used for summaries only |
+| Pilot area | Start with 1–2 regions (decided in Phase 1, e.g. the Sylhet/Sunamganj haor, or the Brahmaputra-Jamuna floodplain) | Covering the whole country at once makes labeling and compute too heavy |
+| Label source | Observed flood mask from Sentinel-1 / JRC / historical flood extent | Synthetic labels are forbidden (critical rule) |
+| Validation | Spatial block CV + temporal split (train on older years, test on newer years) | Prevents spatial-autocorrelation leakage |
+| Models | Logistic Regression → Random Forest → XGBoost, baseline first | Justified complexity |
 | Explainability | Permutation importance + SHAP | Stakeholder trust |
-| Product framing | **Historical risk assessment**, real-time forecast নয় | Critical rule #3, #5 |
-| API | FastAPI + Pydantic schemas, SQLAlchemy + GeoAlchemy2 | Type-safe, auto docs |
+| Product framing | **Historical risk assessment**, not a real-time forecast | Critical rules #3 and #5 |
+| API | FastAPI + Pydantic schemas, SQLAlchemy + GeoAlchemy2 | Type-safe, auto-generated docs |
 
-## 3. Database schema (প্রাথমিক)
+## 3. Database schema (initial)
 
 - `regions` (id, name, level, geom, parent_id)
 - `grid_cells` (id, geom, region_id, elevation, slope, dist_to_river)
@@ -51,10 +51,10 @@
 
 ## 4. Security / config
 
-- সব credential `.env`-এ; `.env.example` commit হয়, `.env` না।
-- GEE service account ফাইল repo-র বাইরে।
-- CORS allow-list, input validation (Pydantic), dependency pinning।
+- All credentials live in `.env`; `.env.example` is committed, `.env` is not.
+- The GEE service account file is kept outside the repo.
+- CORS allow-list, input validation (Pydantic), dependency pinning.
 
 ## 5. Deployment (target)
 
-Docker Compose (db + backend + frontend) → GitHub Actions CI (lint, test) → cloud VM/container service (Phase 7)।
+Docker Compose (db + backend + frontend) → GitHub Actions CI (lint, test) → cloud VM/container service (Phase 7).

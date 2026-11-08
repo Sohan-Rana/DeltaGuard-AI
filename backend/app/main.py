@@ -4,8 +4,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from .config import settings
 
 DISCLAIMER = (
-    "DeltaGuard AI historical risk assessment প্রদান করে। এটি real-time forecast "
-    "বা official disaster warning নয়।"
+    "DeltaGuard AI provides historical risk assessment. It is not a real-time "
+    "forecast or an official disaster warning."
 )
 
 app = FastAPI(

@@ -1,31 +1,31 @@
-# আপনার idea-তে যা যোগ করার সুপারিশ
+# Suggested Additions to the Idea
 
-## MVP-তে অবশ্যই রাখুন
-1. **Pilot-first approach:** পুরো বাংলাদেশ নয়, আগে ১-২ অঞ্চল।
-2. **Label strategy doc:** flood label কোথা থেকে আসছে, তার সীমাবদ্ধতা।
-3. **Baseline আগে:** শুধু rainfall/elevation/river distance দিয়ে simple model।
-4. **Spatial leakage প্রতিরোধ:** পাশাপাশি grid cell train/test-এ ভাগ হলে accuracy ভুয়া দেখাবে।
-5. **Class imbalance:** flood কম, non-flood বেশি → PR-AUC, class weights।
-6. **Data lineage ও reproducibility:** প্রতিটি model run-এর সাথে data version + git commit।
-7. **Disclaimer UI:** "এটি ঐতিহাসিক ঝুঁকি বিশ্লেষণ, official warning নয়।"
+## Must-haves for the MVP
+1. **Pilot-first approach:** start with 1–2 regions, not all of Bangladesh.
+2. **Label strategy doc:** where the flood labels come from, and their limitations.
+3. **Baseline first:** a simple model using only rainfall, elevation and distance to river.
+4. **Prevent spatial leakage:** if neighboring grid cells are split across train/test, the accuracy will look falsely high.
+5. **Class imbalance:** flood cells are rare and non-flood cells are many, so use PR-AUC and class weights.
+6. **Data lineage and reproducibility:** tie every model run to a data version and git commit.
+7. **Disclaimer in the UI:** "This is a historical risk assessment, not an official warning."
 
-## Version 2-তে যোগ করা যায়
-- বাংলা + English ভাষা (i18n)
-- Report PDF export (location-wise)
-- Climate trend / future scenario overlay (CMIP6, স্পষ্টভাবে "scenario" চিহ্নিত)
-- Cyclone/storm surge, riverbank erosion, drought module
-- Population/infrastructure exposure (কত মানুষ/স্কুল/রাস্তা ঝুঁকিতে)
-- Uncertainty map (শুধু score নয়, confidence)
-- Data drift monitoring ও model retraining pipeline
-- Public API key + rate limiting (commercial ধাপে)
-- Offline/low-bandwidth mode (গ্রামীণ ব্যবহারকারীর জন্য)
+## Possible additions for Version 2
+- Bangla + English language support (i18n)
+- Location-wise PDF report export
+- Climate trend / future scenario overlay (CMIP6, clearly labeled as a "scenario")
+- Cyclone/storm surge, riverbank erosion and drought modules
+- Population/infrastructure exposure (how many people, schools and roads are at risk)
+- Uncertainty map (confidence, not just a score)
+- Data drift monitoring and a model retraining pipeline
+- Public API keys + rate limiting (commercial stage)
+- Offline/low-bandwidth mode (for rural users)
 
-## Commercial দিক (পরে)
-- Target user: NGO, বীমা কোম্পানি, কৃষি ঋণ প্রতিষ্ঠান, স্থানীয় সরকার, অবকাঠামো developer
-- Product: location risk report, portfolio risk API
-- Partnership: BWDB/BMD, IWM, CEGIS, icddr,b-এর মতো প্রতিষ্ঠানের সাথে data/validation
+## Commercial angle (later)
+- Target users: NGOs, insurance companies, agricultural lenders, local government, infrastructure developers
+- Products: location risk report, portfolio risk API
+- Partnerships: data/validation with organizations such as BWDB/BMD, IWM, CEGIS and icddr,b
 
-## ঝুঁকি
-- Ground-truth label কঠিন; এটাই প্রকল্পের সবচেয়ে বড় technical ঝুঁকি।
-- Local govt data access ধীর হতে পারে → satellite-first plan।
-- Overclaiming: "predict" শব্দ সাবধানে ব্যবহার করুন।
+## Risks
+- Ground-truth labels are hard to get; this is the project's biggest technical risk.
+- Access to local government data may be slow, so the plan is satellite-first.
+- Overclaiming: use the word "predict" carefully.

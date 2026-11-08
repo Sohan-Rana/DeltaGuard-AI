@@ -1,21 +1,21 @@
 # Data Sources Registry
 
-> **নিয়ম:** নিচের তথ্য Phase 0-এর প্রাথমিক নোট। License, resolution ও access status **Phase 1-এ official documentation থেকে যাচাই** করে "Verified" কলাম পূরণ করতে হবে। যাচাইয়ের আগে কোনো তথ্য চূড়ান্ত ধরা যাবে না। কোনো observation বানানো যাবে না।
+> **Rule:** The information below is preliminary Phase 0 notes. License, resolution and access status **must be verified against the official documentation in Phase 1**, and the "Verified" column filled in. Nothing is final until verified. No observations may be fabricated.
 
-| # | Dataset | ব্যবহার | Access পথ (সম্ভাব্য) | Resolution (যাচাই করতে হবে) | License/Attribution | Verified |
+| # | Dataset | Use | Access route (likely) | Resolution (to verify) | License/Attribution | Verified |
 |---|---|---|---|---|---|---|
-| 1 | NASA GPM (IMERG) | Precipitation | GEE / NASA Earthdata | ✔ যাচাই বাকি | ✔ যাচাই বাকি | ☐ |
-| 2 | CHIRPS | Historical rainfall | GEE / UCSB CHC | ✔ যাচাই বাকি | ✔ যাচাই বাকি | ☐ |
-| 3 | ERA5 / ERA5-Land | Climate reanalysis | Copernicus CDS / GEE | ✔ যাচাই বাকি | ✔ যাচাই বাকি | ☐ |
-| 4 | SRTM | Elevation, slope | GEE / USGS | ✔ যাচাই বাকি | ✔ যাচাই বাকি | ☐ |
-| 5 | JRC Global Surface Water | Water occurrence, flood history | GEE | ✔ যাচাই বাকি | ✔ যাচাই বাকি | ☐ |
-| 6 | Sentinel-1 SAR | Flood extent mapping (label source) | GEE / Copernicus | ✔ যাচাই বাকি | ✔ যাচাই বাকি | ☐ |
-| 7 | OpenStreetMap / HydroSHEDS | River network (distance to river) | OSM / HydroSHEDS | ✔ যাচাই বাকি | ✔ যাচাই বাকি | ☐ |
-| 8 | Bangladesh admin boundaries | District/Upazila polygons | GADM / HDX / BBS | ✔ যাচাই বাকি | ✔ যাচাই বাকি | ☐ |
-| 9 | BWDB water level | River gauge data | **Access অনিশ্চিত** (অনুরোধ লাগতে পারে) | — | — | ☐ |
-| 10 | BMD meteorological | Station data | **Access অনিশ্চিত** | — | — | ☐ |
+| 1 | NASA GPM (IMERG) | Precipitation | GEE / NASA Earthdata | ✔ to verify | ✔ to verify | ☐ |
+| 2 | CHIRPS | Historical rainfall | GEE / UCSB CHC | ✔ to verify | ✔ to verify | ☐ |
+| 3 | ERA5 / ERA5-Land | Climate reanalysis | Copernicus CDS / GEE | ✔ to verify | ✔ to verify | ☐ |
+| 4 | SRTM | Elevation, slope | GEE / USGS | ✔ to verify | ✔ to verify | ☐ |
+| 5 | JRC Global Surface Water | Water occurrence, flood history | GEE | ✔ to verify | ✔ to verify | ☐ |
+| 6 | Sentinel-1 SAR | Flood extent mapping (label source) | GEE / Copernicus | ✔ to verify | ✔ to verify | ☐ |
+| 7 | OpenStreetMap / HydroSHEDS | River network (distance to river) | OSM / HydroSHEDS | ✔ to verify | ✔ to verify | ☐ |
+| 8 | Bangladesh admin boundaries | District/Upazila polygons | GADM / HDX / BBS | ✔ to verify | ✔ to verify | ☐ |
+| 9 | BWDB water level | River gauge data | **Access uncertain** (a formal request may be needed) | — | — | ☐ |
+| 10 | BMD meteorological | Station data | **Access uncertain** | — | — | ☐ |
 
-## প্রতিটি dataset-এর metadata ফাইল (`data/raw/<name>.metadata.json`)
+## Per-dataset metadata file (`data/raw/<name>.metadata.json`)
 
 ```json
 {
@@ -32,6 +32,6 @@
 }
 ```
 
-## ঝুঁকি
-- BWDB/BMD data না পেলে প্রকল্প থেমে যাবে না: satellite + reanalysis দিয়েই MVP হবে।
-- Flood label-এর মান Sentinel-1/JRC processing-এর উপর নির্ভর করে; এর সীমাবদ্ধতা (cloud, vegetation, urban) docs-এ লিখতে হবে।
+## Risks
+- If BWDB/BMD data cannot be obtained, the project does not stop: the MVP will be built from satellite and reanalysis data alone.
+- The quality of flood labels depends on Sentinel-1/JRC processing; its limitations (clouds, vegetation, urban areas) must be documented.

@@ -2,7 +2,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    """সব config environment variable থেকে আসে; কোনো secret hardcode নয়।"""
+    """All config comes from environment variables; no secrets are hardcoded."""
 
     app_env: str = "development"
     database_url: str = ""
