@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ipynb_checkpoints/
+*.egg-info/
+
+# Node
+node_modules/
+frontend/dist/
+
+# Secrets (কখনো commit করবেন না)
+.env
+*.pem
+*.json.key
+service-account*.json
+earthengine-credentials*
+
+# Data (বড় ফাইল git-এ রাখা হয় না; metadata রাখা হয়)
+data/raw/*
+data/processed/*
+data/external/*
+!data/**/.gitkeep
+!data/**/README.md
+!data/**/*.metadata.json
+
+# Model artifacts (বড় হলে DVC / Releases ব্যবহার করুন)
+models/*.pkl
+models/*.joblib
+models/*.ubj
+
+# OS / IDE
+.DS_Store
+.vscode/
+.idea/

@@ -1,0 +1,17 @@
+from fastapi.testclient import TestClient
+
+from backend.app.main import app
+
+client = TestClient(app)
+
+
+def test_health():
+    r = client.get("/health")
+    assert r.status_code == 200
+    assert r.json()["status"] == "ok"
+
+
+def test_disclaimer_mentions_not_official_warning():
+    r = client.get("/api/v1/disclaimer")
+    assert r.status_code == 200
+    assert "official" in r.json()["disclaimer"]
